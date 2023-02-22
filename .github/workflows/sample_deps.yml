@@ -17,8 +17,7 @@ jobs:
         with:
           type: dir
           target: .
-          output-directory: .
-          output-file: webrix_dependencies_sbom.json
+          output-file: webrix-dependencies-sbom.json
 
       - uses: actions/upload-artifact@v2
         with:
