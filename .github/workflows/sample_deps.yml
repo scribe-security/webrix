@@ -12,11 +12,18 @@ jobs:
         run: npm install
 
       - name: Generate cyclonedx json SBOM
+        id: valint_json
         uses: scribe-security/action-bom@master
         with:
           type: dir
           target: .
           output-file: webrix-dependencies-sbom.json
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: scribe-sbom
+          path: ${{ steps.valint_json.outputs.OUTPUT_PATH }}
+
           
       - name: Commit files
         run: |
