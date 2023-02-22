@@ -12,6 +12,7 @@ jobs:
         run: npm install
 
       - name: npm build
+        if: always()
         run: npm run build:prod
 
       - name: Set up Docker Buildx
