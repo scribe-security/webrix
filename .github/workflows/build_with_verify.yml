@@ -1,0 +1,39 @@
+name: verify packages through build
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install npm dependencies
+      run: npm install
+
+    - name: install valint
+      run: | 
+        curl -sSfL https://get.scribesecurity.com/install.sh  | sh -s -- -t valint
+        valint --help
+
+    - name: generate current dependency list
+      id: valint_json
+      uses: scribe-security/action-bom@master
+      with:
+        type: dir
+        target: .
+        output-file: build-dependencies-sbom.json
+
+    - name: verify dependencies
+      run:  | 
+        valint diff build-dependencies-sbom.json webrix-dependencies-sbom.json --integrity modified -O modified.json --paths node_modules:node_modules
+        result=cat modified.json | jq .synopsis.modified
+        if["$result" -ne "0"]; then exit(1); fi
+
+
+    # - name: npm build
+    #   run: npm run build:prod
+    #   continue-on-error: true
+    # - name: Publish to Registry
+    #   uses: elgohr/Publish-Docker-Github-Action@v5
+    #   with:
+    #     name: scribesecurity/webrix:latest
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
