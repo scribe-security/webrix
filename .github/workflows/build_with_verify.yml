@@ -6,6 +6,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: install jq
+      run:  | 
+        sudo apt-get install jq
+        jq
+
     - name: install valint
       run: | 
         curl -sSfL https://get.scribesecurity.com/install.sh  | sh -s -- -t valint
