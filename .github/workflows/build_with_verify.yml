@@ -37,7 +37,13 @@ jobs:
       run: |
         result=$(cat modified.json | jq ".synopsis.modified")
         echo $result
-    #    if [ "$result" -ne "0" ] then exit(1); fi
+        if [ "$result" -ne "0" ]
+        then 
+          echo "Package integrity error."
+          exit(1)
+        else
+          echo "Package integrity validated successully."
+        fi
 
 
     # - name: npm build
