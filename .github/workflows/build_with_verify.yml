@@ -1,7 +1,8 @@
 name: verify packages through build
 on: workflow_dispatch
 jobs:
-  prepare:
+#  prepare:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -24,11 +25,11 @@ jobs:
         curl -sSfL https://get.scribesecurity.com/install.sh  | sh -s -- -t valint
         /home/runner/.scribe/bin/valint --help
   
-  import_dependencies:
-    runs-on: ubuntu-latest
-    needs: prepare
+#   import_dependencies:
+#     runs-on: ubuntu-latest
+#     needs: prepare
     
-    steps:
+#     steps:
     - name: install npm dependencies
       run: npm install
 
@@ -40,10 +41,10 @@ jobs:
         target: .
         output-file: build-dependencies-sbom.json
 
-  validate_dependencies:
-    runs-on: ubuntu-latest
-    needs: import_dependencies
-    steps:
+#   validate_dependencies:
+#     runs-on: ubuntu-latest
+#     needs: import_dependencies
+#     steps:
     - name: create dependencies comp
       run: |
         /home/runner/.scribe/bin/valint diff build-dependencies-sbom.json webrix-dependencies-sbom.json -vv --integrity modified -O modified.json --paths node_modules:node_modules
@@ -62,10 +63,10 @@ jobs:
         else
           echo "Package integrity validated successully."
         fi
-  continue_build:
-    runs-on: ubuntu-latest
-    needs: validate_dependencies
-    steps:
+#   continue_build:
+#     runs-on: ubuntu-latest
+#     needs: validate_dependencies
+#     steps:
     - name: Build final artifact
       run: echo "Building!"
 
