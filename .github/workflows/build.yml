@@ -7,7 +7,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: install npm dependencies
       run: npm install
-    - continue-on-error: true
+      continue-on-error: true
       name: npm build
       run: npm run build:prod
     - name: Publish to Registry
@@ -16,11 +16,3 @@ jobs:
         name: scribesecurity/webrix:latest
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-    - name: Generate SBOM
-      uses: scribe-security/action-bom@master
-      with:
-        target: scribesecurity/webrix:latest
-        scribe-enable: 'true'
-        product-key: scribesecurity/webrix
-        scribe-client-id: ${{ secrets.CLIENT_ID }}
-        scribe-client-secret: ${{ secrets.CLIENT_SECRET }}
