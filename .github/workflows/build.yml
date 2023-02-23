@@ -16,3 +16,11 @@ jobs:
         name: scribesecurity/webrix:latest
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         username: ${{ secrets.DOCKERHUB_USERNAME }}
+    - name: Generate SBOM
+      uses: scribe-security/action-bom@master
+      with:
+        target: scribesecurity/webrix:latest
+        scribe-enable: 'true'
+        product-key: scribesecurity/webrix
+        scribe-client-id: ${{ secrets.client-id }}
+        scribe-client-secret: ${{ secrets.client-secret }}
