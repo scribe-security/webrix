@@ -5,13 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: install npm dependencies
-      run: npm install
 
     - name: install valint
       run: | 
         curl -sSfL https://get.scribesecurity.com/install.sh  | sh -s -- -t valint
-        valint --help
+        /home/runner/.scribe/bin/valint --help
+
+    - name: install npm dependencies
+      run: npm install
 
     - name: generate current dependency list
       id: valint_json
