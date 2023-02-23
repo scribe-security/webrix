@@ -24,22 +24,22 @@ jobs:
         curl -sSfL https://get.scribesecurity.com/install.sh  | sh -s -- -t valint
         /home/runner/.scribe/bin/valint --help
 
-#     - name: install npm dependencies
-#       run: npm install
+    - name: install npm dependencies
+      run: npm install
 
-#     - name: generate current dependency list
-#       id: valint_json
-#       uses: scribe-security/action-bom@master
-#       with:
-#         type: dir
-#         target: .
-#         output-file: build-dependencies-sbom.json
+    - name: generate current dependency list
+      id: valint_json
+      uses: scribe-security/action-bom@master
+      with:
+        type: dir
+        target: .
+        output-file: build-dependencies-sbom.json
 
     - name: create dependencies comp
       run: |
-        /home/runner/.scribe/bin/valint diff webrix-dependencies-sbom.json webrix-dependencies-sbom.json -vv --integrity modified -O modified.json --paths node_modules:node_modules
+        /home/runner/.scribe/bin/valint diff build-dependencies-sbom.json webrix-dependencies-sbom.json -vv --integrity modified -O modified.json --paths node_modules:node_modules
         cat modified.json
-        cat modified.json | jq .synopsis
+        cat modified.json | jq ".synopsis"
         
     - name: evaluate comp
       run: |
