@@ -28,7 +28,8 @@ jobs:
     - name: evaluate comp
       run: |
         result=$(cat modified.json | jq .synopsis.modified)
-        if["$result" -ne "0"]; then exit(1); fi
+        cat modified.json | jq.synopsis
+        if[ "$result" -ne "0" ]; then exit(1); fi
 
 
     # - name: npm build
