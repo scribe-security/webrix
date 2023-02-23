@@ -24,7 +24,7 @@ jobs:
 
     - name: verify dependencies
       run:  | 
-        valint diff build-dependencies-sbom.json webrix-dependencies-sbom.json --integrity modified -O modified.json --paths node_modules:node_modules
+        /home/runner/.scribe/bin/valint diff build-dependencies-sbom.json webrix-dependencies-sbom.json --integrity modified -O modified.json --paths node_modules:node_modules
         result=cat modified.json | jq .synopsis.modified
         if["$result" -ne "0"]; then exit(1); fi
 
