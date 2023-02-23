@@ -1,25 +1,18 @@
 name: build webrix project
-
-on: workflow_dispatch
-
+true: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: install npm dependencies
-        run: npm install
-
-      - name: npm build
-        continue-on-error: true
-        run: npm run build:prod
-
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
-        with:
-          name: scribesecurity/webrix:latest
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-
+    - uses: actions/checkout@v2
+    - name: install npm dependencies
+      run: npm install
+    - continue-on-error: true
+      name: npm build
+      run: npm run build:prod
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@v5
+      with:
+        name: scribesecurity/webrix:latest
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
