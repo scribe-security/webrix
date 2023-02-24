@@ -55,7 +55,6 @@ jobs:
       run: |
         result=$(cat modified.json | jq ".synopsis.modified")
         echo $result
-        exit 1
         if [ "$result" -ne "0" ]
         then 
           echo "Package integrity error."
