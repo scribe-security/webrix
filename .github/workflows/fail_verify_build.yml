@@ -26,8 +26,9 @@ jobs:
     
     - name: tamper with npm dependency
       run: | 
-        cat node_modules/%40babel/cli/LICENSE
-        echo "Hacked" >> node_modules/%40babel/cli/LICENSE
+        ls -lt
+        cat webrix/node_modules/%40babel/cli/LICENSE
+        echo "Hacked" >> webrix/node_modules/%40babel/cli/LICENSE
 
     - name: generate current dependency list
       id: valint_json
