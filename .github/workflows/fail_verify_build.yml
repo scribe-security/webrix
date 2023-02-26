@@ -31,7 +31,7 @@ jobs:
         ls node_modules/@babel
         ls node_modules/@babel/cli
         cat node_modules/@babel/cli/LICENSE
-        echo "Hacked" >> webrix/node_modules/@babel/cli/LICENSE
+        echo "Hacked" >> node_modules/@babel/cli/LICENSE
 
     - name: generate current dependency list
       id: valint_json
