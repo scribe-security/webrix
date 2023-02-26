@@ -20,6 +20,7 @@ jobs:
       uses: scribe-security/action-bom@master
       with:
         target: scribesecurity/webrix:latest
+        format: attest
         scribe-enable: 'true'
         product-key: scribesecurity/webrix
         scribe-client-id: ${{ secrets.CLIENT_ID }}
