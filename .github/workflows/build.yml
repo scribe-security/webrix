@@ -3,6 +3,10 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     steps:
     - uses: actions/checkout@v2
     - name: install npm dependencies
@@ -19,7 +23,7 @@ jobs:
     - name: Generate SBOM
       uses: scribe-security/action-bom@master
       with:
-        target: scribesecurity/webrix:latest
+        target: 'scribesecurity/webrix:latest'
         format: attest
         scribe-enable: 'true'
         product-key: scribesecurity/webrix
