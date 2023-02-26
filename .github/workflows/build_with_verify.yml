@@ -10,15 +10,6 @@ jobs:
     - name: install jq
       run:  | 
         sudo apt-get install jq
-        jq
-        tmp=0
-        if [ "$result" -ne "0" ]
-        then 
-          echo "Package integrity error."
-          exit 1
-        else
-          echo "Package integrity validated successully."
-        fi
 
     - name: install valint
       run: | 
