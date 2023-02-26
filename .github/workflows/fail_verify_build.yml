@@ -27,7 +27,10 @@ jobs:
     - name: tamper with npm dependency
       run: | 
         ls -lt
-        cat webrix/node_modules/%40babel/cli/LICENSE
+        ls node_modules
+        ls node_modules/%40babel
+        ls node_modules/%40babel/cli
+        cat node_modules/%40babel/cli/LICENSE
         echo "Hacked" >> webrix/node_modules/%40babel/cli/LICENSE
 
     - name: generate current dependency list
