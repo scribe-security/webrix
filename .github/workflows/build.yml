@@ -26,6 +26,6 @@ jobs:
         target: 'scribesecurity/webrix:latest'
         format: attest
         scribe-enable: 'true'
-        product-key: scribesecurity/webrix
+        product-key: 'scribesecurity/webrix'
         scribe-client-id: ${{ secrets.CLIENT_ID }}
         scribe-client-secret: ${{ secrets.CLIENT_SECRET }}
