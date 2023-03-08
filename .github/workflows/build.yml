@@ -25,6 +25,7 @@ jobs:
       with:
         target: 'scribesecurity/webrix:latest'
         format: cyclonedx-json
+        verbose: 2
         scribe-enable: 'true'
         product-key: 'scribesecurity/webrix'
         scribe-client-id: ${{ secrets.CLIENT_ID }}
