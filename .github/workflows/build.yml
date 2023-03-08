@@ -14,12 +14,12 @@ jobs:
     - name: npm build
       run: npm run build:prod
       continue-on-error: true
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@v5
-      with:
-        name: scribesecurity/webrix:latest
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
+    # - name: Publish to Registry
+    #   uses: elgohr/Publish-Docker-Github-Action@v5
+    #   with:
+    #     name: scribesecurity/webrix:latest
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
     - name: Generate SBOM
       uses: scribe-security/action-bom@master
       with:
@@ -29,3 +29,5 @@ jobs:
         product-key: 'scribesecurity/webrix'
         scribe-client-id: ${{ secrets.CLIENT_ID }}
         scribe-client-secret: ${{ secrets.CLIENT_SECRET }}
+    - name: check envs
+      run: echo "$GITHUB_CONTEXT"
