@@ -31,8 +31,8 @@ jobs:
         scribe-client-id: ${{ secrets.CLIENT_ID }}
         scribe-client-secret: ${{ secrets.CLIENT_SECRET }}
     - name: check envs
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-        WF: ${{ toJson(github.event.workflow) }}
-      run: echo "$WF"
+      # env:
+        # GITHUB_CONTEXT: ${{ toJson(github) }}
+        # WF: ${{ toJson(github.event.workflow) }}
+      run: echo "${{ github.event.workflow }}"
         
