@@ -33,5 +33,6 @@ jobs:
     - name: check envs
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo {{ $github.event.workflow }}
+        WF: ${{ toJson(github.event.workflow) }}
+      run: echo "$WF"
         
