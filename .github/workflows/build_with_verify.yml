@@ -58,7 +58,8 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         # Artifact name
-        name: modified.json
+        name: diff-result
+        path: modified.json
         
 #   continue_build:
 #     runs-on: ubuntu-latest
