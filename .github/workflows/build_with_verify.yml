@@ -53,6 +53,13 @@ jobs:
         else
           echo "Package integrity validated successully."
         fi
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        # Artifact name
+        name: modified.json
+        
 #   continue_build:
 #     runs-on: ubuntu-latest
 #     needs: validate_dependencies
