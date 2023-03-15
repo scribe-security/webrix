@@ -34,5 +34,5 @@ jobs:
       # env:
         # GITHUB_CONTEXT: ${{ toJson(github) }}
         # WF: ${{ toJson(github.event.workflow) }}
-      run: echo "${{ github.event.workflow }}"
+      run: echo "${{ github.event.workflow }}" 
         
